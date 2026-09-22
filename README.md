@@ -2,12 +2,16 @@
 
 The **developer** half of the Zero Company modding toolset by Envian Mods, for **STAR WARS: Zero Company** (Bit Reactor, Unreal Engine 5.6).
 It builds content mods — new items, abilities, customization parts with real art, character classes and recruits, table rows, retextures — and
-emits a `.zip` that **[Zero Company Mod Command](https://github.com/EnvianMods)** (the player-facing mod manager) installs like any other pak mod.
-Mods that add *enumerable* content (things the game's menus, shops and pickers must list) need the small **[ZCSDK Runtime](https://github.com/EnvianMods/ZCSDK-Runtime-Release)**
-on the player's side; Mod Command installs it on demand.
+emits a `.zip` that **[Zero Company Mod Command](https://www.nexusmods.com/starwarszerocompany/mods/121)** (the player-facing mod manager) installs like any other pak mod.
+The two are **separate downloads**: the SDK builds the package, Mod Command installs it. Mods that add *enumerable* content (things the
+game's menus, shops and pickers must list) need the small **[ZCSDK Runtime](https://github.com/EnvianMods/ZCSDK-Runtime-Release)** on the
+player's side; Mod Command installs it on demand.
 
-`latest.json` at the root of this repository describes the newest release (`version`, download `url`). The same package is on
-**[Nexus Mods](https://www.nexusmods.com/games/starwarszerocompany/mods/163)**.
+`sdk-version.json` at the root of the release repository is the SDK's update file — the SDK's own UI checks it and shows a banner when a
+newer build is out (`latest.json` sits beside it for anything that only wants the download link). The public label is the one on this
+release; `tools/version.json` carries the internal toolchain build the update file compares against. Get the SDK on
+**[Nexus Mods](https://www.nexusmods.com/starwarszerocompany/mods/163)** or from
+**[github.com/EnvianMods/ZCSDK/releases](https://github.com/EnvianMods/ZCSDK/releases)**.
 
 ## What you need (developer machine)
 
@@ -15,9 +19,10 @@ on the player's side; Mod Command installs it on demand.
 |---|---|
 | Unreal Engine **5.6.x** | must match the game's major.minor (5.7 is rejected at load) |
 | MSVC (VS Build Tools) + Windows 10 SDK 10.0.26100 + **.NET Framework 4.8.1 Developer Pack** | the one prerequisite that is easy to miss |
-| `retoc` 0.1.5 | bundled with Mod Command (`ZeroCompanyModManager/tools/retoc.exe`) |
+| `retoc` 0.1.5 | trumank's open-source tool — [github.com/trumank/retoc](https://github.com/trumank/retoc) releases; also bundled with Zero Company Mod Command under `ZeroCompanyModManager/tools/` |
 | node.js, python 3.8+ (Pillow optional — the demo art generators) | |
-| the game installed | the tools read its paks; the reflection dump (`.jmap`) is made in-game with UE4SS |
+| **Blender 4.1+** | only for the artist path (meshes, faces, hair, outfits) |
+| the game installed | the tools read its paks. The reflection dump (`.jmap`) **ships in `Reflection/`** — re-dumping it in-game with UE4SS is optional, and only needed after the game updates |
 
 `python tools/doctor.py` prints the readiness report.
 
@@ -32,25 +37,71 @@ node tools/zcmod-build.js mods/MyFirstTattoo/MyFirstTattoo.json --check     # pr
 node tools/zcmod-build.js mods/MyFirstTattoo/MyFirstTattoo.json --deploy    # build + copy into the game (game closed)
 ```
 
-The deliverable is `build/<Mod>_v<version>.zip`. Every recipe is a working sample under `tools/samples/` with its `_note` keys as documentation;
+**Publish it.** The deliverable is the single file `build/<Mod>_v<version>.zip` — upload it to Nexus (or to a GitHub release) and
+that is the whole mod. Players install it with Zero Company Mod Command like any other pak mod; Mod Command reads the
+`modinfo.json` inside it for the title, version and author.
+
+**Installing by hand, without Mod Command.** The zip holds the pak trio plus its sidecars, and where they go depends on the mod's
+layout (`--layout`, or the mod-def's `"layout"`):
+
+| layout | unzip / copy to | needs the ZCSDK Runtime? |
+|---|---|---|
+| `paks` (default) | `<game>\SWZeroCompany\Content\Paks\` — `<Mod>_P.pak`, `.ucas`, `.utoc`, plus `<Mod>.AssetRegistry.bin` and `<Mod>.zcsdk.lua` when the zip carries them | only for *enumerable* content, i.e. when the zip carries an `AssetRegistry.bin` or the mod grants items |
+| `gfp` | `build/<Mod>_v<version>_gfp.zip` unzipped to `<game>\SWZeroCompany\Mods\<Mod>\` | no — the game's own loader mounts the folder and its registry |
+
+Restart the game after either. The ZCSDK Runtime is two UE4SS mods, `tools/ue4ss-bridge` and `tools/ue4ss-loader`; Mod Command
+installs them on demand, or install them by hand following their own READMEs.
+
 `tools/README.md` is the mod-def reference, `docs/SDK_GUIDE.md` the how-to, `docs/CHANGELOG.md` the history.
 
-## Recipes (proven in the retail game)
+## Templates
+
+**`templates/` is one ready-to-edit starting point per recipe** — 32 folders, each with the mod-def, the art / meshes / animation
+data it references, and a README whose first section is "What to change first" (the identity, the art or the numbers, the names
+and tags). They are generated by the scaffolder itself, so `--new <recipe> <YourName>` writes you a renamed, re-namespaced copy of
+the same thing; `templates/README.md` is the gallery page. The `_note` keys inside every mod-def are the recipe's documentation.
+
+**A template teaches a mechanism; it is not a finished mod.** Every name, description and piece of art in one is a placeholder
+that exists to show how the block works, and all of it is meant to be replaced — a template will build and install, but what it
+builds is a demonstration, not content. The mods that show these recipes off in screenshots are their author's own releases and
+are **not** part of this download.
+
+A few recipes are **compositions** — other recipes merged into one mod-def rather than a mechanism of their own. No template
+ships for those: `node tools/zcmod-build.js --new --list` prints them under their own heading, and `--new <composition> <Name>`
+names the recipes to scaffold and merge, with the write-up that walks the merge.
+
+## Recipes
+
+All 33 (32 with a template of their own, plus one composition), grouped as `templates/README.md` groups them. Each is built on a
+mechanism proven in the retail game; `docs/SDK_GUIDE.md` §9 names the few whose own build is gated offline but has not yet been seen in the game.
 
 | Recipe | What it adds |
 |---|---|
 | `cost`, `ability-seq` | rows in the game's composite data tables |
+| `balance` | the NUMBERS in a game attribute table (a weapon's damage / crit / range) |
 | `item`, `shop-item`, `reward-item`, `granted-item` | net-new inventory items (weapon mods) — sold, rewarded or granted |
 | `appends`, `reward-shapes` | entries appended to the game's own list assets (reward / shop tables) |
 | `ability`, `passive` | net-new abilities, effects, tags; a net-new tactical specialization |
-| `color-part`, `tattoo`, `scar` | net-new customization parts — colors, and parts with real art (textures) |
-| `robe`, `skirt`, `hood`, `boots` | outfit parts with NET-NEW SKINNED MESHES modelled in Blender on the shipped rig template — Tops, Legs, Headwear (hides the hair), Boots; hair via `samples/hair_mod.json` |
 | `class` | a net-new character class on a net-new pre-authored recruit, with runtime recruit pins |
+| `force-ability` | a net-new FORCE ability — a data-only child of the game's cone archetype with its own name, icon and cinematic |
+| `sith` | **a composition, no template**: a net-new operator class with a lightsaber of its own and a Force power = `class` + `lightsaber-game` + `force-ability` merged (`docs/SITH_CLASS.md`) |
+| `color-part`, `tattoo`, `scar` | net-new customization parts — colors, and parts with real art (textures) |
 | `retexture` (`textures[]` with a game path) | replace any game texture (e.g. weapon paint patterns) |
+| `robe`, `tunic`, `skirt`, `hood`, `boots` | outfit parts with NET-NEW SKINNED MESHES modelled in Blender on the shipped rig template — Tops (`tunic` = the full artist round-trip with real cloth maps), Legs, Headwear (hides the hair), Boots |
+| `hair` | a net-new hairstyle on the game's hair master, shipped as the pair every hairstyle needs (the part + the helmet-hidden variant) |
+| `game-mesh` | a GAME mesh extracted, edited in Blender and shipped back as a part with the game's own materials |
+| `face` | a custom face that STILL ANIMATES — the game's head resculpted, morph targets and RigLogic DNA kept |
+| `blaster` | a net-new blaster with its own pieces, paint, numbers and every attachment fitting |
+| `lightsaber`, `lightsaber-game` | a net-new lightsaber — with a hilt you model, or on a game model with its blade and numbers kept |
+| `animation` | a game animation made the mod's own: a byte-for-byte cooked clone with its notifies intact, plus the rebuild route |
+| `strings` | localised text — a string table of the mod's own and a compiled `.locres` per culture |
+| `foley` | a customization part that carries a foley sound (the game's own Wwise events and switches) |
+| `mission` | a net-new mission on the strategy map, plus the weighted table that offers it |
 
 ## The artist path
 
-`tools/mesh/`: rig templates (`samples/mesh/rig_HAA{M,F}_03A.glb`, the game's 632-bone rig + a stick-figure proxy), `blender_export.py`
+`tools/mesh/`: the toolchain — `blender_demo*.py` (one headless round-trip per outfit slot; **each mesh template ships the
+rig pair and reference skeleton these need in its own `mesh/` folder**, so the round-trip runs with nothing else on disk), `blender_export.py`
 (in-Blender exporter), `check_gltf.py --fix` (the gate: joints snapped back to the rig, inverse bind matrices rebuilt, weights, region rule,
 winding), `scalp_from_mesh.py` (the game's head geometry out of a cooked mesh — hair and hoods are built on it). Materials are instances of
 the game's own masters with your textures (`meshes[].material.instanceOf`). The [Zero Company Mod Studio](https://www.nexusmods.com/starwarszerocompany)
@@ -60,3 +111,7 @@ exports game meshes with skeleton and weights into Blender; `tools/studio.py` wr
 
 Two tools, one bridge: Mod Command stays a lean click-to-play app; the SDK is the separate dev tool with the Unreal + compiler environment.
 They meet only at the package output. Runtime source: `tools/ue4ss-bridge` (C++ UE4SS mod) + `tools/ue4ss-loader` (Lua).
+
+The SDK has its own window, `tools/sdk-ui/` (`npm install` then `npm start` in that folder): the prerequisite report, the template gallery,
+your mods, and check / build / deploy with the live build log. A future Zero Company Mod Command release will host that same window inside
+Mod Command when it finds an SDK install — one panel, one copy of the code, no second download.
