@@ -1,15 +1,15 @@
 {
-  "latest": "1.29.3",
-  "publicVersion": "1.0.2",
-  "published": "2026-09-23T08:36:04Z",
+  "latest": "1.29.6",
+  "publicVersion": "1.0.3",
+  "published": "2026-09-23T20:00:04Z",
   "preferred": "github",
   "nexus": {
     "url": "https://www.nexusmods.com/starwarszerocompany/mods/163"
   },
   "github": {
-    "url": "https://github.com/EnvianMods/ZCSDK/releases/tag/v1.0.2",
-    "asset": "ZeroCompanyModSDK-v1.0.2.zip",
-    "download": "https://github.com/EnvianMods/ZCSDK/releases/download/v1.0.2/ZeroCompanyModSDK-v1.0.2.zip"
+    "url": "https://github.com/EnvianMods/ZCSDK/releases/tag/v1.0.3",
+    "asset": "ZeroCompanyModSDK-v1.0.3.zip",
+    "download": "https://github.com/EnvianMods/ZCSDK/releases/download/v1.0.3/ZeroCompanyModSDK-v1.0.3.zip"
   },
-  "notes": "1.0.2 - Start Mod SDK.bat opens the workbench by double-click; weapon mods in bulk (many blasters per mod, no fx needed, Stock paint); net-new parts in your own namespace are now listed in the game; the build leaves the SDK folder clean; LICENSE (not open source). See docs/CHANGELOG.md."
+  "notes": "Zero Company Mod SDK 1.0.3 - setup that does itself (the doctor writes your config; Settings sets every path visually), a guided first mod (walkthrough, build stepper, errors explained), and the after-build tools (mod-def editor, asset drop zone, Test / Conflicts / Publish). Node.js 22.12+ required. Not open source: see LICENSE."
 }
