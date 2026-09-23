@@ -1,0 +1,62 @@
+ZERO COMPANY MOD SDK — LICENSE
+
+Copyright (c) 2026 Envian Mods. All rights reserved.
+
+This is not an open-source license. The Zero Company Mod SDK (the "SDK") —
+its tools, scripts, source files, templates, documentation, art, reflection
+data and everything else in this distribution — is licensed, not sold, to you
+on the terms below. Downloading, unpacking or using the SDK means you accept
+them. If you do not accept them, do not use the SDK.
+
+1. WHAT YOU MAY DO
+   a. Download and install the SDK on machines you control.
+   b. Use the SDK to create modifications ("mods") for STAR WARS: Zero Company.
+   c. Distribute the mods you build with the SDK, free of charge or otherwise,
+      under any terms you choose, subject to the game's own terms and any
+      third-party terms that apply to your content. Mods you build are yours;
+      Envian Mods claims no rights in them.
+   d. Modify the SDK's templates and configuration files for your own use, and
+      keep local changes to the SDK's scripts for your own use.
+
+2. WHAT YOU MAY NOT DO
+   a. Redistribute the SDK, in whole or in substantial part, in any form —
+      including re-uploading it, mirroring it, bundling it with another
+      product, or publishing a modified copy — without written permission
+      from Envian Mods.
+   b. Sell, rent, lease, sublicense or otherwise commercialise the SDK itself.
+   c. Remove or alter this license, the copyright notices, or the SDK's
+      version and update files.
+   d. Use the SDK to build anything that violates the game's terms of service,
+      the terms of the platform you distribute on, or applicable law.
+
+3. THIRD-PARTY AND GAME MATERIAL
+   The SDK works with, but does not include, Unreal Engine, Visual Studio,
+   Node.js, Python, Blender, retoc and UE4SS; each is subject to its own
+   license. Reflection data, type definitions and fixture assets derived from
+   STAR WARS: Zero Company are included solely to let the SDK interoperate
+   with the game and remain the property of their respective owners. Any
+   third-party component that ships inside the SDK keeps its own license
+   notice where present, and that notice governs that component.
+
+4. NO WARRANTY
+   THE SDK IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+   IMPLIED, INCLUDING BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY,
+   FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL
+   ENVIAN MODS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY ARISING
+   FROM THE USE OF THE SDK, INCLUDING DAMAGE TO GAME INSTALLATIONS, SAVES OR
+   OTHER DATA.
+
+5. TERMINATION
+   This license ends automatically if you breach it. On termination you must
+   stop using the SDK and delete your copies. Sections 1(c), 3, 4 and 6
+   survive termination.
+
+6. GENERAL
+   This license is the whole agreement about the SDK. Envian Mods may publish
+   a revised license with a future version of the SDK; the version you
+   downloaded stays under the license it came with. If any part of this
+   license is unenforceable, the rest still applies.
+
+STAR WARS and Zero Company are trademarks of their respective owners. Envian
+Mods is not affiliated with, endorsed by or sponsored by Lucasfilm, Disney,
+Electronic Arts or Bit Reactor.
