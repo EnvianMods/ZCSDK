@@ -47,7 +47,7 @@ layout (`--layout`, or the mod-def's `"layout"`):
 | layout | unzip / copy to | needs the ZCSDK Runtime? |
 |---|---|---|
 | `paks` (default) | `<game>\SWZeroCompany\Content\Paks\` — `<Mod>_P.pak`, `.ucas`, `.utoc`, plus `<Mod>.AssetRegistry.bin` and `<Mod>.zcsdk.lua` when the zip carries them | only for *enumerable* content, i.e. when the zip carries an `AssetRegistry.bin` or the mod grants items |
-| `gfp` | `build/<Mod>_v<version>_gfp.zip` unzipped to `<game>\SWZeroCompany\Mods\<Mod>\` | no — the game's own loader mounts the folder and its registry |
+| `gfp` | `build/<Mod>_v<version>_gfp.zip` unzipped to `<game>\SWZeroCompany\Mods\<Mod>\` | only when the mod ships net-new customization parts (or other scanned primary assets) — the game's own loader mounts the folder and its registry, but its pickers list new parts only after the Runtime's rescan; such a zip carries `<Mod>.zcsdk.lua` and says so in `modinfo.json` |
 
 Restart the game after either. The ZCSDK Runtime is two UE4SS mods, `tools/ue4ss-bridge` and `tools/ue4ss-loader`; Mod Command
 installs them on demand, or install them by hand following their own READMEs.
@@ -112,6 +112,12 @@ exports game meshes with skeleton and weights into Blender; `tools/studio.py` wr
 Two tools, one bridge: Mod Command stays a lean click-to-play app; the SDK is the separate dev tool with the Unreal + compiler environment.
 They meet only at the package output. Runtime source: `tools/ue4ss-bridge` (C++ UE4SS mod) + `tools/ue4ss-loader` (Lua).
 
-The SDK has its own window, `tools/sdk-ui/` (`npm install` then `npm start` in that folder): the prerequisite report, the template gallery,
-your mods, and check / build / deploy with the live build log. A future Zero Company Mod Command release will host that same window inside
+The SDK has its own window, `tools/sdk-ui/`: **double-click `Start Mod SDK.bat`** in the SDK's root folder to open it (the first run installs
+its one dependency, Electron, ~100 MB; node.js 18+ must be on `PATH`), or run `npm install` then `npm start` in `tools/sdk-ui/` yourself.
+It holds the prerequisite report, the template gallery, your mods, and check / build / deploy with the live build log. A future Zero Company Mod Command release will host that same window inside
 Mod Command when it finds an SDK install — one panel, one copy of the code, no second download.
+
+## License
+
+The SDK is not open source: all rights reserved by Envian Mods — use it to make mods, which are yours; do not
+redistribute the SDK itself. See `LICENSE`.
