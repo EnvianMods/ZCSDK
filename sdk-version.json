@@ -1,15 +1,15 @@
 {
-  "latest": "1.29.2",
-  "publicVersion": "1.0.1",
-  "published": "2026-09-23T01:56:18Z",
-  "preferred": "nexus",
+  "latest": "1.29.3",
+  "publicVersion": "1.0.2",
+  "published": "2026-09-23T08:36:04Z",
+  "preferred": "github",
   "nexus": {
     "url": "https://www.nexusmods.com/starwarszerocompany/mods/163"
   },
   "github": {
-    "url": "https://github.com/EnvianMods/ZCSDK/releases/tag/v1.0.1",
-    "asset": "ZeroCompanyModSDK-v1.0.1.zip",
-    "download": "https://github.com/EnvianMods/ZCSDK/releases/download/v1.0.1/ZeroCompanyModSDK-v1.0.1.zip"
+    "url": "https://github.com/EnvianMods/ZCSDK/releases/tag/v1.0.2",
+    "asset": "ZeroCompanyModSDK-v1.0.2.zip",
+    "download": "https://github.com/EnvianMods/ZCSDK/releases/download/v1.0.2/ZeroCompanyModSDK-v1.0.2.zip"
   },
-  "notes": "Zero Company Mod SDK 1.0.1 - the first public release: 33 recipes, 32 ready-to-edit templates, the artist path, classes with purchasable skill trees, custom animations and effects."
+  "notes": "1.0.2 - Start Mod SDK.bat opens the workbench by double-click; weapon mods in bulk (many blasters per mod, no fx needed, Stock paint); net-new parts in your own namespace are now listed in the game; the build leaves the SDK folder clean; LICENSE (not open source). See docs/CHANGELOG.md."
 }
