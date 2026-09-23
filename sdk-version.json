@@ -1,15 +1,15 @@
 {
   "latest": "1.29.2",
-  "publicVersion": "1.0.0",
-  "published": "2026-09-23T01:21:55Z",
+  "publicVersion": "1.0.1",
+  "published": "2026-09-23T01:56:18Z",
   "preferred": "nexus",
   "nexus": {
     "url": "https://www.nexusmods.com/starwarszerocompany/mods/163"
   },
   "github": {
-    "url": "https://github.com/EnvianMods/ZCSDK/releases/tag/v1.0.0",
-    "asset": "ZeroCompanyModSDK-v1.0.0.zip",
-    "download": "https://github.com/EnvianMods/ZCSDK/releases/download/v1.0.0/ZeroCompanyModSDK-v1.0.0.zip"
+    "url": "https://github.com/EnvianMods/ZCSDK/releases/tag/v1.0.1",
+    "asset": "ZeroCompanyModSDK-v1.0.1.zip",
+    "download": "https://github.com/EnvianMods/ZCSDK/releases/download/v1.0.1/ZeroCompanyModSDK-v1.0.1.zip"
   },
-  "notes": "Zero Company Mod SDK 1.0.0 - the first public release: 33 recipes, 32 ready-to-edit templates, the artist path, classes with purchasable skill trees, custom animations and effects."
+  "notes": "Zero Company Mod SDK 1.0.1 - the first public release: 33 recipes, 32 ready-to-edit templates, the artist path, classes with purchasable skill trees, custom animations and effects."
 }
