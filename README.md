@@ -29,8 +29,7 @@ release; `tools/version.json` carries the internal toolchain build the update fi
 ## Quick start
 
 ```
-copy tools\config.example.json tools\config.json        # then fill the paths
-python tools/doctor.py                                  # prerequisites
+python tools/doctor.py                                  # first run writes tools\config.json from detected paths
 node tools/zcmod-build.js --new --list                  # the recipes
 node tools/zcmod-build.js --new tattoo MyFirstTattoo    # scaffold mods/MyFirstTattoo/MyFirstTattoo.json (+ demo art)
 node tools/zcmod-build.js mods/MyFirstTattoo/MyFirstTattoo.json --check     # preflight
@@ -113,7 +112,7 @@ Two tools, one bridge: Mod Command stays a lean click-to-play app; the SDK is th
 They meet only at the package output. Runtime source: `tools/ue4ss-bridge` (C++ UE4SS mod) + `tools/ue4ss-loader` (Lua).
 
 The SDK has its own window, `tools/sdk-ui/`: **double-click `Start Mod SDK.bat`** in the SDK's root folder to open it (the first run installs
-its one dependency, Electron, ~100 MB; node.js 18+ must be on `PATH`), or run `npm install` then `npm start` in `tools/sdk-ui/` yourself.
+its one dependency, Electron, ~100 MB; node.js 22.12+ must be on `PATH`), or run `npm install` then `npm start` in `tools/sdk-ui/` yourself.
 It holds the prerequisite report, the template gallery, your mods, and check / build / deploy with the live build log. A future Zero Company Mod Command release will host that same window inside
 Mod Command when it finds an SDK install — one panel, one copy of the code, no second download.
 
