@@ -2,7 +2,7 @@
   "latest": "1.29.3",
   "publicVersion": "1.0.2",
   "published": "2026-09-23T08:36:04Z",
-  "preferred": "nexus",
+  "preferred": "github",
   "nexus": {
     "url": "https://www.nexusmods.com/starwarszerocompany/mods/163"
   },
