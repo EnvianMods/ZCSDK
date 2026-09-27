@@ -19,7 +19,7 @@ release; `tools/version.json` carries the internal toolchain build the update fi
 |---|---|
 | Unreal Engine **5.6.x** | must match the game's major.minor (5.7 is rejected at load) |
 | MSVC (VS Build Tools) + Windows 10 SDK 10.0.26100 + **.NET Framework 4.8.1 Developer Pack** | the one prerequisite that is easy to miss |
-| `retoc` 0.1.5 | trumank's open-source tool — [github.com/trumank/retoc](https://github.com/trumank/retoc) releases; also bundled with Zero Company Mod Command under `ZeroCompanyModManager/tools/` |
+| `retoc` 0.1.5 | trumank's open-source tool — [github.com/trumank/retoc](https://github.com/trumank/retoc) releases. Zero Company Mod Command ships it and keeps a copy at `%APPDATA%\ZeroCompanyModCommand\tools\retoc.exe`, which the doctor's detection finds; or set `retoc` to any `retoc.exe` — the file itself, not its folder |
 | node.js, python 3.8+ (Pillow optional — the demo art generators) | |
 | **Blender 4.1+** | only for the artist path (meshes, faces, hair, outfits) |
 | the game installed | the tools read its paks. The reflection dump (`.jmap`) **ships in `Reflection/`** — re-dumping it in-game with UE4SS is optional, and only needed after the game updates |
@@ -113,8 +113,8 @@ They meet only at the package output. Runtime source: `tools/ue4ss-bridge` (C++ 
 
 The SDK has its own window, `tools/sdk-ui/`: **double-click `Start Mod SDK.bat`** in the SDK's root folder to open it (the first run installs
 its one dependency, Electron, ~100 MB; node.js 22.12+ must be on `PATH`), or run `npm install` then `npm start` in `tools/sdk-ui/` yourself.
-It holds the prerequisite report, the template gallery, your mods, and check / build / deploy with the live build log. A future Zero Company Mod Command release will host that same window inside
-Mod Command when it finds an SDK install — one panel, one copy of the code, no second download.
+It holds the prerequisite report, the template gallery, your mods, and check / build / deploy with the live build log. Zero Company Mod Command 1.0.9 and newer hosts that same window inside
+Mod Command when it finds an SDK install (Settings → ◆ SDK → **Detect**; the **◆ Forge** view) — one panel, one copy of the code, no second download.
 
 ## License
 
