@@ -1,7 +1,7 @@
 {
-  "version": "1.0.4",
-  "asset": "ZeroCompanyModSDK-v1.0.4.zip",
-  "url": "https://github.com/EnvianMods/ZCSDK/releases/download/v1.0.4/ZeroCompanyModSDK-v1.0.4.zip",
-  "published": "2026-09-27T03:35:53Z",
+  "version": "1.0.5",
+  "asset": "ZeroCompanyModSDK-v1.0.5.zip",
+  "url": "https://github.com/EnvianMods/ZCSDK/releases/download/v1.0.5/ZeroCompanyModSDK-v1.0.5.zip",
+  "published": "2026-10-17T01:22:39Z",
   "source": "Zero Company Mod SDK (tools/publish-sdk.py)"
 }
