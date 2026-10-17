@@ -1,15 +1,15 @@
 {
-  "latest": "1.29.14",
-  "publicVersion": "1.0.4",
-  "published": "2026-09-27T03:35:53Z",
+  "latest": "1.29.22",
+  "publicVersion": "1.0.5",
+  "published": "2026-10-17T01:22:39Z",
   "preferred": "github",
   "nexus": {
     "url": "https://www.nexusmods.com/starwarszerocompany/mods/163"
   },
   "github": {
-    "url": "https://github.com/EnvianMods/ZCSDK/releases/tag/v1.0.4",
-    "asset": "ZeroCompanyModSDK-v1.0.4.zip",
-    "download": "https://github.com/EnvianMods/ZCSDK/releases/download/v1.0.4/ZeroCompanyModSDK-v1.0.4.zip"
+    "url": "https://github.com/EnvianMods/ZCSDK/releases/tag/v1.0.5",
+    "asset": "ZeroCompanyModSDK-v1.0.5.zip",
+    "download": "https://github.com/EnvianMods/ZCSDK/releases/download/v1.0.5/ZeroCompanyModSDK-v1.0.5.zip"
   },
-  "notes": "Zero Company Mod SDK 1.0.4 - a runtime fix for blank Armoury rows and a hardened loader (1.8.25), SDK lightsabers you can switch off again, sabers with several blades, blade length and thickness, cloth physics for outfit parts (new, not yet seen in the game), retoc found where Mod Command keeps it, the outfit mask layout fixed, and notes for mods that run beside ZCUnlocked. Build the editor target once after updating. Node.js 22.12+ required. Not open source: see LICENSE."
+  "notes": "Zero Company Mod SDK 1.0.5 - see docs/CHANGELOG.md in the download."
 }
