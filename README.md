@@ -9,9 +9,8 @@ player's side; Mod Command installs it on demand.
 
 `sdk-version.json` at the root of the release repository is the SDK's update file — the SDK's own UI checks it and shows a banner when a
 newer build is out (`latest.json` sits beside it for anything that only wants the download link). The public label is the one on this
-release; `tools/version.json` carries the internal toolchain build the update file compares against. Get the SDK on
-**[Nexus Mods](https://www.nexusmods.com/starwarszerocompany/mods/163)** or from
-**[github.com/EnvianMods/ZCSDK/releases](https://github.com/EnvianMods/ZCSDK/releases)**.
+release; `tools/version.json` carries the internal toolchain build the update file compares against. Updates are published on
+**[github.com/EnvianMods/ZCSDK/releases](https://github.com/EnvianMods/ZCSDK/releases)**, and the update banner opens that page.
 
 ## What you need (developer machine)
 
@@ -86,14 +85,14 @@ mechanism proven in the retail game; `docs/SDK_GUIDE.md` §9 names the few whose
 | `sith` | **a composition, no template**: a net-new operator class with a lightsaber of its own and a Force power = `class` + `lightsaber-game` + `force-ability` merged (`docs/SITH_CLASS.md`) |
 | `color-part`, `tattoo`, `scar` | net-new customization parts — colors, and parts with real art (textures) |
 | `retexture` (`textures[]` with a game path) | replace any game texture (e.g. weapon paint patterns) |
-| `robe`, `tunic`, `skirt`, `hood`, `boots` | outfit parts with NET-NEW SKINNED MESHES modelled in Blender on the shipped rig template — Tops (`tunic` = the full artist round-trip with real cloth maps), Legs, Headwear (hides the hair), Boots |
+| `robe`, `tunic`, `skirt`, `hood`, `boots` | outfit parts with NET-NEW SKINNED MESHES modeled in Blender on the shipped rig template — Tops (`tunic` = the full artist round-trip with real cloth maps), Legs, Headwear (hides the hair), Boots |
 | `hair` | a net-new hairstyle on the game's hair master, shipped as the pair every hairstyle needs (the part + the helmet-hidden variant) |
 | `game-mesh` | a GAME mesh extracted, edited in Blender and shipped back as a part with the game's own materials |
 | `face` | a custom face that STILL ANIMATES — the game's head resculpted, morph targets and RigLogic DNA kept |
 | `blaster` | a net-new blaster with its own pieces, paint, numbers and every attachment fitting |
 | `lightsaber`, `lightsaber-game` | a net-new lightsaber — with a hilt you model, or on a game model with its blade and numbers kept |
 | `animation` | a game animation made the mod's own: a byte-for-byte cooked clone with its notifies intact, plus the rebuild route |
-| `strings` | localised text — a string table of the mod's own and a compiled `.locres` per culture |
+| `strings` | localized text — a string table of the mod's own and a compiled `.locres` per culture |
 | `foley` | a customization part that carries a foley sound (the game's own Wwise events and switches) |
 | `mission` | a net-new mission on the strategy map, plus the weighted table that offers it |
 
