@@ -21,9 +21,37 @@ release; `tools/version.json` carries the internal toolchain build the update fi
 | `retoc` 0.1.5 | trumank's open-source tool — [github.com/trumank/retoc](https://github.com/trumank/retoc) releases. Zero Company Mod Command ships it and keeps a copy at `%APPDATA%\ZeroCompanyModCommand\tools\retoc.exe`, which the doctor's detection finds; or set `retoc` to any `retoc.exe` — the file itself, not its folder |
 | node.js, python 3.8+ (Pillow optional — the demo art generators) | |
 | **Blender 4.1+** | only for the artist path (meshes, faces, hair, outfits) |
-| the game installed | the tools read its paks. The reflection dump (`.jmap`) **ships in `Reflection/`** — re-dumping it in-game with UE4SS is optional, and only needed after the game updates |
+| the game installed | the tools read its paks. UE4SS is only needed to refresh the reflection dump after a game update |
 
 `python tools/doctor.py` prints the readiness report.
+
+## Game files
+
+The SDK works on some of the game's own files, and the download includes them: the retail test packages its selftests
+read (`tools/fixtures/`), the rig templates the mesh templates model on (`templates/*/mesh/rig_*.glb`), the reflection
+dumps in `Reflection/` (the `.jmap` and the `.usmap`), the templates' `refskel_*.json` skeletons, the decoded
+`*.udecode.json` dumps and material tables, and Epic's OnlineSubsystemSteam `.locres`. `tools/fixtures/GAME_FILES.json`
+lists each one and where it comes from.
+
+To regenerate or repair them from your own install, for example after a game update:
+
+```
+python tools/doctor.py --game-files                     # re-extracts the test packages (retoc) and rebuilds the rig templates
+```
+
+A file from a newer game build than the one the SDK was tested on is kept and marked `differs`; the checks that pin its
+exact bytes skip it, and a selftest whose file is missing prints `SKIP (game file not generated ...)` instead of failing.
+
+To refresh the jmap and usmap for a new game build, use the SDK's UE4SS dump mod:
+
+```
+python tools/doctor.py --game-files --install-dump-mod  # game closed: installs the dump mod
+                                                        # start the game, load into the Den, open character customization
+                                                        # and the Armory once, then:
+python tools/doctor.py --game-files --dump-now          # writes the jmap (and the usmap, when UE4SS has the dumper)
+python tools/doctor.py --game-files --collect-dump      # game closed: copies them into Reflection/ and sets config `jmap`
+python tools/doctor.py --game-files --remove-dump-mod   # uninstalls the dump mod
+```
 
 ## Quick start
 
